@@ -16,7 +16,7 @@ env:
   SLOT_NAME: genesis
   GROUP: vite-test-apps
   REGION: eastus #westus3
-  ACCOUNT: test1z1zz1z11zssss  # Does not have to exist, this will be created for you
+  ACCOUNT: testssz11z11zssss  # Does not have to exist, this will be created for you
   CONTAINER: cont-tain-er
   EXPIRY_TIME: 10 minutes
 
