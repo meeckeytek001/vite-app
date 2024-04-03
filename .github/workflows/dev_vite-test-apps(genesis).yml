@@ -65,7 +65,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'vite-test-apps'
+          app-name: 'vite-test-apps/genesis'
           slot-name: 'genesis'
           package: .
           
