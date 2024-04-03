@@ -39,9 +39,9 @@ jobs:
   publish:
     runs-on: ubuntu-latest
     needs: build
-    # environment:
-    #   name: 'genesis'
-    #   url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+    environment:
+      name: 'genesis'
+      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
 
