@@ -9,6 +9,17 @@ on:
       - dev
   workflow_dispatch:
 
+env:
+  AZURE_FUNCTIONAPP_PACKAGE_PATH: '.' # set this to the path to your web app project, defaults to the repository root
+  NODE_VERSION: '20.x' # set this to the node version to use (supports 8.x, 10.x, 12.x)
+  WEBAPP: genesis (vite-test-apps/genesis)
+  SLOT_NAME: genesis
+  GROUP: vite-test-apps
+  REGION: eastus #westus3
+  ACCOUNT: test1z1zz1z11zssss  # Does not have to exist, this will be created for you
+  CONTAINER: cont-tain-er
+  EXPIRY_TIME: 10 minutes
+
 jobs:
   build:
     runs-on: ubuntu-latest
