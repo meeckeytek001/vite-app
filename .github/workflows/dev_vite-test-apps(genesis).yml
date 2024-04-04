@@ -78,7 +78,7 @@ jobs:
             az extension add --name webapp
 
             az storage account create -n $ACCOUNT -g $GROUP -l $REGION --sku Standard_LRS --min-tls-version TLS1_2
-            az storage container create -n $CONTAINER --account-name $ACCOUNT
+            az storage container create -n $CONTAINER --account-name $ACCOUNT --overwrite
             az storage blob upload      -f release.zip --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT
 
             ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.expiry }} --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT | xargs))
