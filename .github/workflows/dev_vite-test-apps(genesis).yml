@@ -83,6 +83,6 @@ jobs:
 
             ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.expiry }} --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT | xargs))
 
-            az webapp deployment source config-zip --name vite-test-apps --resource-group vite-test-apps --slot genesis --src $ZIP_URL 
+            az webapp deploy source config-zip --name vite-test-apps --resource-group vite-test-apps --type zip --src-url  $ZIP_URL --async false
 
             az storage container delete -n cont-tain-er --account-name test1z1zz1z11zssss
