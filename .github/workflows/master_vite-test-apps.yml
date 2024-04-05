@@ -38,7 +38,7 @@ jobs:
           npm run test --if-present
 
       - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
+        run: zip release.zip ./dist/* -r
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
@@ -82,9 +82,11 @@ jobs:
             az storage container create -n $CONTAINER --account-name $ACCOUNT
             az storage blob upload      -f release.zip --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT
 
-            ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.expiry }} --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT | xargs)
+            ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.expiry }} --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT)
 
-            az webapp deploy --name $WEBAPP --resource-group $GROUP --type zip --src-url $ZIP_URL --async false
+            echo ZIP_URL | sed 's/&/\&/g'
+
+            az webapp deploy --resource-group $GROUP --name $WEBAPP --type zip --src-url $ZIP_URL --async false
 
             az storage container delete -n $CONTAINER --account-name $ACCOUNT 
 
