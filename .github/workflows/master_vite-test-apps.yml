@@ -86,7 +86,7 @@ jobs:
 
             echo ZIP_URL | sed 's/&/\&/g'
 
-            az webapp deploy --resource-group $GROUP --name $WEBAPP --type zip --src-url $ZIP_URL --async false
+            az webapp deploy --resource-group $GROUP --name $WEBAPP --type zip --src-url "$ZIP_URL" --async false
 
             az storage container delete -n $CONTAINER --account-name $ACCOUNT 
 
