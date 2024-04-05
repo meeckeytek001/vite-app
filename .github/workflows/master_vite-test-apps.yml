@@ -82,11 +82,9 @@ jobs:
             az storage container create -n $CONTAINER --account-name $ACCOUNT
             az storage blob upload      -f release.zip --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT
 
-            ZIP_URL=$(az storage blob generate-sas --full-uri --permissions r --expiry ${{ env.expiry }} --account-name $ACCOUNT -c $CONTAINER -n $ACCOUNT | xargs)
-
-            TEST_URL=$(printf $ZIP_URL)
+            ZIP_URL=$(az storage blob generate-sas -c $CONTAINER -n $ACCOUNT --permissions r --expiry ${{ env.expiry }} --https-only | xargs)
            
-            az webapp deploy --resource-group $GROUP --name $WEBAPP --type zip --src-url $TEST_URL --async false
+            az webapp deploy --resource-group $GROUP --name $WEBAPP --type zip --src-url $ZIP_URL --async false
 
             az storage container delete -n $CONTAINER --account-name $ACCOUNT 
 
